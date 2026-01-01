@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Wawa 💗</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #fde2e8, #fbcfe8);
+    }
+
+    .card-frame {
+      border-radius: 28px;
+      background: white;
+      box-shadow: 0 25px 40px rgba(236, 72, 153, 0.25);
+      border: 6px solid #f9a8d4;
+    }
+
+    /* ENVELOPE */
+    .envelope {
+      width: 260px;
+      height: 170px;
+      background: #f9a8d4;
+      border-radius: 16px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.6s ease;
+    }
+
+    .envelope:active {
+      transform: scale(0.96);
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #f472b6;
+      clip-path: polygon(0 0, 50% 55%, 100% 0);
+      transform-origin: top;
+      transition: transform 0.8s ease;
+    }
+
+    .open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .letter {
+      position: absolute;
+      top: 20px;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      background: white;
+      border-radius: 12px;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: 0.8s ease;
+    }
+
+    .open .letter {
+      transform: translateY(-20px);
+      opacity: 1;
+    }
+
+    .kabur {
+      position: absolute;
+      transition: 0.3s;
+    }
+  </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen px-4">
+
+  <!-- AUDIO -->
+  <audio id="birthdaySong">
+    <source src="kasih.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ENVELOPE PAGE -->
+  <div id="envelopePage" class="card-frame p-6 w-full max-w-sm text-center animate__animated animate__fadeIn">
+    <div class="mb-4">
+      <img src="wwwiw.jpg" class="mx-auto w-24 h-24 rounded-full object-cover border-4 border-pink-300" />
+    </div>
+
+    <p class="text-pink-500 font-extrabold text-xl mb-4 tracking-wide">
+      TAP THE ENVELOPE 💌
+    </p>
+
+    <div id="envelope" class="envelope mx-auto" onclick="openEnvelope()">
+      <div class="flap"></div>
+      <div class="letter"></div>
+    </div>
+
+    <p class="mt-5 text-sm text-pink-400 italic">
+      satu tap aja ya 🌸
+    </p>
+  </div>
+
+  <!-- YES / NO PAGE -->
+  <div id="pageAwal" class="hidden card-frame p-8 w-full max-w-sm text-center animate__animated animate__zoomIn">
+    <div class="text-4xl mb-2">💗</div>
+
+    <h1 class="text-2xl font-bold text-pink-500">
+      are you ready?
+    </h1>
+
+    <p class="mt-3 text-gray-500 italic">
+      choose one🌷
+    </p>
+
+    <div class="flex justify-center gap-4 mt-6 relative h-14">
+      <button
+        onclick="goToCard()"
+        class="px-7 py-3 bg-pink-500 text-white rounded-full text-lg transform transition hover:scale-125"
+      >
+        YES 🌸
+      </button>
+
+      <button
+        id="noBtn"
+        onmouseover="kabur()"
+        class="kabur px-6 py-3 bg-gray-300 text-gray-700 rounded-full"
+      >
+        NO 😳
+      </button>
+    </div>
+
+    <p class="mt-6 text-pink-500 text-sm">
+      gabole no, harus pilih yess 😝
+    </p>
+  </div>
+
+ <div
+  id="kartu"
+  class="hidden card-frame p-4 w-full max-w-sm text-center animate__animated animate__backInDown"
+  style="
+    background-image: url('basket.jpg');
+    background-size: cover;
+    background-position: center;
+  "
+>
+  <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-6">
+    
+    <h1 class="text-3xl font-bold text-pink-500">
+   Happy 21st Birthday, Wawa 💗
+    </h1>
+
+    <p class="mt-4 text-gray-600 text-sm leading-relaxed">
+     semoga di umur baru ini,
+  langkah Wawa selalu dipermudah,
+  rezekinya ngalir terus,
+  dan hal-hal baik dateng tanpa banyak drama. may life treat you kindly, semoga mimpi-mimpi kecil maupun besar
+  pelan-pelan nemuin jalannya,
+  satu per satu, at your own pace. just like your favorite song lately,
+semoga hidup kamu juga penuh rasa,
+tenang, hangat, dan selalu punya tempat
+buat pulang dan istirahat 🤍<br><br>
+
+     Cheers to 21 🥂<br>
+     to growing, learning, falling, rising,
+and becoming a better version of yourself <br>
+      and of course janlup traktir aku yaw 🤩
+    </p>
+
+    <p class="mt-5 text-sm text-gray-500">
+      - with love,<br>
+      <span class="font-semibold text-pink-600">dayn 🌹</span>
+    </p>
+
+    <button
+      class="mt-6 w-full py-3 bg-pink-500 text-white rounded-full"
+      onclick="location.reload()"
+    >
+      close 🌸
+    </button>
+
+  </div>
+</div>
+
+  <!-- SCRIPT -->
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+
+  <script>
+    function openEnvelope() {
+      document.getElementById("envelope").classList.add("open");
+      setTimeout(() => {
+        document.getElementById("envelopePage").classList.add("hidden");
+        document.getElementById("pageAwal").classList.remove("hidden");
+      }, 900);
+    }
+
+    function kabur() {
+      const noBtn = document.getElementById("noBtn");
+      noBtn.style.transform = `translate(${Math.random()*200-100}px, ${Math.random()*120-60}px)`;
+    }
+
+    function goToCard() {
+      document.getElementById("pageAwal").classList.add("hidden");
+      document.getElementById("kartu").classList.remove("hidden");
+
+      confetti({
+        particleCount: 180,
+        spread: 120,
+        origin: { y: 0 },
+        colors: ["#f472b6", "#fb7185", "#f9a8d4", "#fecdd3"]
+      });
+
+      document.getElementById("birthdaySong").play();
+
+      function refresh() {
+        location.reload();
+      }
+    }
+  </script>
+</body>
+</html>
